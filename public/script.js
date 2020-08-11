@@ -3,20 +3,24 @@ let showingData = null;
 let uniqueUserIds = [];
 const url = 'https://jsonplaceholder.typicode.com/posts';
 
+// Create new element
 function createNode(element) {
   return document.createElement(element);
 }
 
+// Create new element
 function append(parent, el) {
   return parent.appendChild(el);
 }
 
+// Fetch data from the API
 async function getData(url) {
   let response = await fetch(url);
   let data = await response.json()
   return data;
 }
 
+// Create new elements, add content inside each element and insert it inside #grid
 function insertPosts(posts) {
   posts.map(function(post) {
     const grid = document.getElementById('grid');
@@ -36,7 +40,8 @@ function insertPosts(posts) {
     append(div, h1);
     append(div, desc);
     append(div, userId);
-        
+    
+    // Only add unique user id's to the groupBy dropdown
     if(!uniqueUserIds.includes(post.userId)) {
       uniqueUserIds.push(post.userId)
       let selectUserId = createNode('option');
@@ -47,6 +52,7 @@ function insertPosts(posts) {
   })
 }
 
+// Replace innerHTML of the posts (only used while sorting)
 function replacePosts(posts) {
   const grid = document.getElementById('grid');
   grid.querySelectorAll('div').forEach((element, index) => {
@@ -60,6 +66,7 @@ function replacePosts(posts) {
 
 const sortBtn = document.getElementById('sortBtn');
 
+// Sort Function
 sortBtn.onclick = function () {
   const grid = document.getElementById('grid');
   if(sortBtn.innerHTML == "Sort Title ▲") {
@@ -83,6 +90,8 @@ sortBtn.onclick = function () {
 
 const groupBySelect = document.getElementById('groupBy');
 
+
+//GroupBy function
 groupBySelect.onchange = function(e) {
   const selectedValue = e.target.value;
   const grid = document.getElementById('grid');
