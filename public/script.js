@@ -3,8 +3,6 @@ let showingData = null;
 let uniqueUserIds = [];
 const url = 'https://jsonplaceholder.typicode.com/posts';
 
-
-
 function createNode(element) {
   return document.createElement(element);
 }
