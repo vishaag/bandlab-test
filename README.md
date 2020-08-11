@@ -11,8 +11,8 @@ How does it work?
 Data Page (`script.js`) - 
 
 1. First, the main() fn is called which fetches the data and calls insertPosts() with the fetched data.
-2. insertPosts() creates the nexessary DOM elements and inserts it on to the page, applying the required styling.
-3. onclick() and onchang() handlers are set on Sort and GroupBy input elements.
+2. insertPosts() creates the necessary DOM elements and inserts it on to the page, applying the required styling.
+3. onclick() and onchange() handlers are set on Sort and GroupBy input elements.
 4. when Sort is clicked, the posts are sorted and replacePosts() is called with the new sorted data. replacePosts() directly inserts the data into the innerHTML and does not remove and add new DOMs (since they're a costly operation).
 5. When groupBy is selected from the dropdown, it filters the posts based on user ID and insertPosts() is called with the new filtered data.
 
