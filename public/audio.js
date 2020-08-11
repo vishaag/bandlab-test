@@ -1,3 +1,4 @@
+//Add more songs to make it show in the website :)
 const songs = [
   {
     name: 'New Wave Kit',
@@ -9,16 +10,20 @@ const songs = [
   }
 ];
 
+// Create new element
 function createNode(element) {
   return document.createElement(element);
 }
 
+// Create new element
 function append(parent, el) {
   return parent.appendChild(el);
 }
 
 const main = document.querySelector('main');
 
+
+// Render all song objects as elements and append it to #main
 songs.forEach((song,index) => {
   let div = createNode('div'),
     playButton = createNode('button'),
@@ -38,6 +43,7 @@ songs.forEach((song,index) => {
 })
 
 
+// Play Audio
 function play(event, index, id) {
   const context = new AudioContext();  
   fetch(songs[index].url)
@@ -47,17 +53,18 @@ function play(event, index, id) {
       const source = context.createBufferSource();
       source.buffer = audioBuffer;
       source.connect(context.destination);
-      source.start();
+      source.start(); // play audio
       const playButton = document.getElementById(id);
       playButton.innerHTML = "▇"
-      playButton.onclick = () => stop(playButton, index, source);
+      playButton.onclick = () => stop(playButton, index, source); // while the song is playing, attach onclick handler to call stop()
       source.onended = () => stop(playButton, index, source);
   });
 }
 
+// Stop playing audio
 function stop(playButton, index, source) {
     playButton.innerHTML = "▶"
-    source.stop(0);
-    playButton.onclick = (event) => play(event, index, `play${index}`);
+    source.stop(0); // stop audio
+    playButton.onclick = (event) => play(event, index, `play${index}`); //re-attach onclicke handler to call play()
 };
 
